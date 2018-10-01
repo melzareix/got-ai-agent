@@ -1,8 +1,8 @@
 package utils;
 
-public class Pair {
-    private int x;
-    private int y;
+public class Pair implements Comparable<Pair>{
+    public int x;
+    public int y;
 
     public Pair(int x, int y) {
         this.x = x;
@@ -13,15 +13,23 @@ public class Pair {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+    @Override
+    public int compareTo(Pair o) {
+        if (o.x == this.x) {
+            return this.y - o.y;
+        }
+        return this.x - o.x;
     }
 }

@@ -5,102 +5,67 @@ import generic.Operator;
 import generic.SearchProblem;
 import generic.State;
 import utils.Pair;
+import westeros.operators.KillOperator;
+import westeros.operators.PickupOperator;
+import westeros.operators.movement.MoveDownOperator;
+import westeros.operators.movement.MoveLeftOperator;
+import westeros.operators.movement.MoveRightOperator;
+import westeros.operators.movement.MoveUpOperator;
 
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class SaveWesteros extends SearchProblem {
+    private WesterosMap map;
 
     public SaveWesteros() {
-        this.initialState = setInitialState();
+        this.map = WesterosMap.getInstance();
+        this.addOperators();
     }
 
-    /**
-     * Generates a random integer i the range [min, max]
-     * @param min
-     * @param max
-     * @return an integer
-     */
-    public int randomInt(int min, int max) {
-        return (int) (Math.random() * (max - min + 1)) + min;
+    @Override
+    public State getInitialState() {
+        Pair initialPosition = new Pair(map.m - 1, map.n - 1);
+        return new WesterosState(initialPosition, 0, map.maxGlass, map.getWhiteWalkersPositions());
     }
 
-    /**
-     * Generates grid positions for both white walkers and obstacles
-     * @param count number of white walkers and obstacles
-     * @param gridSize size of the grid
-     * @return Set of grid positions
-     */
-    public TreeSet<Integer> generatePositions(int count, int gridSize) {
-        TreeSet<Integer> positions = new TreeSet<>();
-        while (positions.size() < count) {
-            int position = randomInt(0, gridSize-2);
-            positions.add(position);
-        }
-        return positions;
-    }
-
-    /**
-     * TODO:: RANDOMIZE IT BITCHES
-     * Generates a random grid
-     * @param m grid rows
-     * @param n grid columns
-     * @param wwRange Pair represents the range of White Walkers' count
-     * @param obRange Pair represents the range of obstacles' count
-     * @param dgRange Pair represents the range of Dragon Glasses' count
-     * @return Grid of size n*m represents the search problem
-     */
-    public char[][] genGrid(int m, int n, Pair wwRange, Pair obRange, Pair dgRange) {
-        char [][] grid = new char[m][n];
-
-        int ww = randomInt(wwRange.getX(), wwRange.getY());
-        int ob = randomInt(obRange.getX(), obRange.getY());
-        int dg = randomInt(dgRange.getX(), dgRange.getY());
-        int count = ww+ob+dg;
-        TreeSet<Integer> positions = generatePositions(count, m*n);
-
-        for(int p : positions){
-            int row= p/m;
-            int col= p%m;
-            if(ww > 0) {
-                grid[row][col] = 'W';
-                ww--;
-            } else if(ob > 0) {
-                grid[row][col] = 'O';
-                ob--;
-            } else {
-                grid[row][col] = 'D';
-                dg--;
+    @Override
+    public ArrayList<Node> expand(Node n, ArrayList<Operator> operators) {
+        ArrayList<Node> nodes = new ArrayList<>();
+        for (Operator o: operators) {
+            Node newNode = o.apply(n);
+            if (newNode != null) {
+                nodes.add(newNode);
             }
         }
-
-        grid[m-1][n-1] = 'J';
-        return grid;
+        return nodes;
     }
 
-    @Override
-    public State setInitialState() {
-        return null;
-    }
-
-    @Override
-    public Object makeQueue(Object prevQueue, ArrayList<Node> nodes, String strategy) {
-        return null;
-    }
-
-    @Override
-    public Node makeNode(State state) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Node> expand(Node n, Operator[] o) {
-        return null;
+    public void printMap() {
+        this.map.printGrid();
     }
 
     @Override
     public boolean goalTest(State state) {
-        return false;
+        return ((WesterosState) state).getWhiteWalkersPositions().isEmpty();
+    }
+
+    @Override
+    public void printSolution(Node node) {
+        if (node.getParent() != null) {
+            System.out.println(node);
+            printSolution(node.getParent());
+        }
+    }
+
+    private void addOperators() {
+        this.operators = new ArrayList<>();
+        operators.add(new MoveUpOperator());
+        operators.add(new MoveDownOperator());
+        operators.add(new MoveLeftOperator());
+        operators.add(new MoveRightOperator());
+        operators.add(new PickupOperator());
+        operators.add(new KillOperator());
     }
 }
+
+

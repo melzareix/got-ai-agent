@@ -7,52 +7,67 @@ public class Node {
     private int depth;
     private int cost;
 
-    public Node(State state, Node parent, Operator operator, int depth, int cost) {
+    public Node(State state, Node parent, Operator operator) {
         this.state = state;
         this.parent = parent;
-
         this.operator = operator;
-        this.depth = depth;
-        this.cost = cost;
+
+        if (this.parent != null) {
+            this.depth = parent.getDepth() + 1;
+            this.cost = parent.getCost() + operator.getCost();
+        }
     }
 
+    /**
+     * @return the state of the node.
+     */
     public State getState() {
         return state;
     }
 
-    public void setState(State state) {
-        this.state = state;
-    }
-
+    /**
+     * @return the parent of the node.
+     */
     public Node getParent() {
         return parent;
     }
 
-    public void setParent(Node parent) {
-        this.parent = parent;
-    }
-
+    /**
+     * @return the operator applied to get the node.
+     */
     public Operator getOperator() {
         return operator;
     }
 
-    public void setOperator(Operator operator) {
-        this.operator = operator;
+    /**
+     * set the cost of the node.
+     * @param cost the new cost of the node.
+     */
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
+    /**
+     * @return depth of the node in the tree.
+     */
     public int getDepth() {
         return depth;
     }
 
-    public void setDepth(int depth) {
-        this.depth = depth;
-    }
-
+    /**
+     * @return cost of the path of the node.
+     */
     public int getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    @Override
+    public String toString() {
+        return "Node{" +
+                "state=" + state +
+                ", operator=" + operator +
+//                ", parent=" + parent +
+//                ", cost=" + cost +
+                '}';
     }
 }
