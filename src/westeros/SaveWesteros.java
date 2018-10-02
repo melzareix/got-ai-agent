@@ -1,9 +1,6 @@
 package westeros;
 
-import generic.Node;
-import generic.Operator;
-import generic.SearchProblem;
-import generic.State;
+import generic.*;
 import utils.Pair;
 import westeros.operators.KillOperator;
 import westeros.operators.PickupOperator;
@@ -31,7 +28,7 @@ public class SaveWesteros extends SearchProblem {
     @Override
     public ArrayList<Node> expand(Node n, ArrayList<Operator> operators) {
         ArrayList<Node> nodes = new ArrayList<>();
-        for (Operator o: operators) {
+        for (Operator o : operators) {
             Node newNode = o.apply(n);
             if (newNode != null) {
                 nodes.add(newNode);
@@ -41,7 +38,11 @@ public class SaveWesteros extends SearchProblem {
     }
 
     public void printMap() {
+        System.out.println("======================");
+        System.out.println("Initial Westeros Map");
+        System.out.println("======================");
         this.map.printGrid();
+        System.out.println("======================");
     }
 
     @Override
@@ -50,11 +51,17 @@ public class SaveWesteros extends SearchProblem {
     }
 
     @Override
-    public void printSolution(Node node) {
-        if (node.getParent() != null) {
-            System.out.println(node);
-            printSolution(node.getParent());
+    public void printSolution(Node node, boolean visualize) {
+        Solution solution = new Solution(visualize);
+
+        // Add solution nodes to the solution
+        while (node.getParent() != null) {
+            solution.addNode(node);
+            node = node.getParent();
         }
+        solution.addNode(node);
+        solution.printSolution();
+
     }
 
     private void addOperators() {
@@ -64,7 +71,7 @@ public class SaveWesteros extends SearchProblem {
         operators.add(new MoveLeftOperator());
         operators.add(new MoveRightOperator());
         operators.add(new PickupOperator());
-        operators.add(new KillOperator());
+        operators.add(new KillOperator(3 * (this.map.m + this.map.n)));
     }
 }
 

@@ -31,11 +31,11 @@ public class WesterosMap {
     private static final double DSTONE_PERCENTAGE = 0.1;
     private static final double OBSTACLE_PERCENTAGE = 0.15;
 
-    private static final char WW_REP = 'W';
+    public  static final char WW_REP = 'W';
     private static final char D_REP = 'D';
     private static final char O_REP = '#';
-    private static final char JS_REP = 'J';
-    private static final char DEF_REP = '.';
+    public static final char JS_REP = 'J';
+    public static final char DEF_REP = '.';
 
     private WesterosMap() {
         this.randomGenerator = new Random(WesterosMap.RANDOM_SEED);
@@ -108,9 +108,13 @@ public class WesterosMap {
      * Print the grid in a human readable format.
      */
     public void printGrid() {
-        for (char[] row : this.grid) {
+        printGrid(this.grid);
+    }
+
+    public static void printGrid(char[][] grid) {
+        for (char[] row : grid) {
             for (char e : row) {
-                System.out.print(e);
+                System.out.printf("%4c", e);
             }
             System.out.println();
         }

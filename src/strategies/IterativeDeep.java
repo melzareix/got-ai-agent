@@ -28,7 +28,7 @@ public class IterativeDeep extends SearchQueue {
     public boolean isEmpty() {
         boolean isDone = queue.isEmpty();
         if (isDone) {
-            System.out.println("NO SOLUTION @ "  + queue.depth);
+            System.out.printf("Tried depth %d but failed to find solution, trying depth %d ...\n", queue.depth, queue.depth + 1);
             queue.depth++;
             queue.resetQueue();
         }

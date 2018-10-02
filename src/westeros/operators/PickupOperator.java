@@ -6,7 +6,7 @@ import westeros.WesterosState;
 
 public class PickupOperator extends WesterosOperator {
     public PickupOperator() {
-        super(0, "PICKUP");
+        super(1, "PICKUP");
     }
 
     @Override

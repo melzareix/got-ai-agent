@@ -36,4 +36,9 @@ public abstract class Operator {
     public String getName() {
         return name;
     }
+
+    @Override
+    public String toString() {
+        return "Operator: " + name + " Cost: " + cost;
+    }
 }

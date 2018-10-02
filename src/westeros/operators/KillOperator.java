@@ -7,8 +7,8 @@ import westeros.WesterosState;
 import java.util.TreeSet;
 
 public class KillOperator extends WesterosOperator {
-    public KillOperator() {
-        super(1, "KILL");
+    public KillOperator(int cost) {
+        super(cost, "KILL");
     }
 
     @Override

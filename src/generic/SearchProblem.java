@@ -44,18 +44,17 @@ abstract public class SearchProblem {
                 if (curr == null) continue;
 
                 if (goalTest(curr.getState())) {
-                    System.out.println("YEAH SOLUTION BITCHES");
-                    printSolution(curr);
+                    printSolution(curr, visualize);
                     return;
                 }
                 ArrayList<Node> nodes = expand(curr, operators);
                 searchQueue.enqueue(nodes);
             }
-            System.out.println("FUCK YOU NO SOLUTION");
+            System.out.println("NO SOLUTION FOUND");
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 
-    public abstract void printSolution(Node node);
+    public abstract void printSolution(Node node, boolean visualize);
 }
