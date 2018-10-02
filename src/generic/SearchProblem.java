@@ -39,12 +39,14 @@ abstract public class SearchProblem {
         try {
             Constructor<?> cons = queue.getConstructor(State.class);
             SearchQueue searchQueue = (SearchQueue) cons.newInstance(this.getInitialState());
+            int totalNodes = 0;
             while (!searchQueue.isEmpty()) {
                 Node curr = searchQueue.removeFront();
+                totalNodes++;
                 if (curr == null) continue;
 
                 if (goalTest(curr.getState())) {
-                    printSolution(curr, visualize);
+                    printSolution(curr, visualize, totalNodes);
                     return;
                 }
                 ArrayList<Node> nodes = expand(curr, operators);
@@ -56,5 +58,5 @@ abstract public class SearchProblem {
         }
     }
 
-    public abstract void printSolution(Node node, boolean visualize);
+    public abstract void printSolution(Node node, boolean visualize, int totalNodes);
 }

@@ -65,8 +65,8 @@ public class WesterosMap {
     private void genGrid() {
 //        this.m = this.randomGenerator.nextInt(GRID_BOUND + 1) + 4;
 //        this.n = this.randomGenerator.nextInt(GRID_BOUND + 1) + 4;
-        this.m = 4;
-        this.n = 4;
+        this.m = 5;
+        this.n = 5;
         final int gridSize = m * n;
 
         this.grid = new char[m][n];

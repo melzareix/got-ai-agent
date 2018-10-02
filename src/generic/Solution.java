@@ -13,16 +13,15 @@ public class Solution {
     private ArrayList<char[][]> solutionSteps;
     private ArrayList<Operator> solutionOperators;
     private WesterosMap map;
-    int cost;
-    int depth;
+    int cost, depth, totalNodes, expandedNodes;
     boolean visualize;
-    int expandedNodes;
 
-    public Solution(boolean visualize) {
+    public Solution(boolean visualize, int totalNodes) {
         solutionNodes = new ArrayList<>();
         solutionSteps = new ArrayList<>();
         solutionOperators = new ArrayList<>();
         this.visualize = visualize;
+        this.totalNodes = totalNodes;
         map = WesterosMap.getInstance();
     }
 
@@ -40,9 +39,10 @@ public class Solution {
         }
 
         System.out.println("======================");
+        System.out.println("Total number of expanded nodes: " + totalNodes);
         System.out.println("Number of DG used to reach solution: " + cost);
-        System.out.println("Number of expanded nodes: " + expandedNodes);
-        System.out.println("Depth to reach solution: " + depth);
+        System.out.println("Number of expanded nodes for this solution: " + expandedNodes);
+        System.out.println("Depth of the solution: " + depth);
         System.out.println("======================");
 
         if (visualize) {

@@ -11,8 +11,8 @@ public class Main {
         SaveWesteros problem = new SaveWesteros();
         problem.printMap();
 
-//        problem.search(BreadthFirst.class, true);
-//        problem.search(DepthFirst.class, true);
+        problem.search(BreadthFirst.class, true);
+        problem.search(DepthFirst.class, true);
 //        problem.search(IterativeDeep.class, true);
     }
 }

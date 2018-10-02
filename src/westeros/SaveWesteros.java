@@ -51,8 +51,8 @@ public class SaveWesteros extends SearchProblem {
     }
 
     @Override
-    public void printSolution(Node node, boolean visualize) {
-        Solution solution = new Solution(visualize);
+    public void printSolution(Node node, boolean visualize, int totalNodes) {
+        Solution solution = new Solution(visualize, totalNodes);
 
         // Add solution nodes to the solution
         while (node.getParent() != null) {
