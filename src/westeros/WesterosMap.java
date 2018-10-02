@@ -32,8 +32,8 @@ public class WesterosMap {
     private static final double OBSTACLE_PERCENTAGE = 0.15;
 
     public  static final char WW_REP = 'W';
-    private static final char D_REP = 'D';
-    private static final char O_REP = '#';
+    public static final char D_REP = 'D';
+    public static final char O_REP = '#';
     public static final char JS_REP = 'J';
     public static final char DEF_REP = '.';
 
@@ -114,7 +114,16 @@ public class WesterosMap {
     public static void printGrid(char[][] grid) {
         for (char[] row : grid) {
             for (char e : row) {
-                System.out.printf("%4c", e);
+                System.out.printf("%4c ", e);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printGrid(String[][] grid) {
+        for (String[] row : grid) {
+            for (String e : row) {
+                System.out.printf("%1$-10s", e);
             }
             System.out.println();
         }
