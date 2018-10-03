@@ -70,7 +70,7 @@ public class WesterosSolution extends Solution {
 
         WesterosState state = (WesterosState) node.getState();
         for (Pair p : state.getWhiteWalkersPositions()) {
-            grid[p.x][p.y] = BLUE_BOLD + WesterosMap.WW_REP + ANSI_RESET;
+            grid[p.x][p.y] = ANSI_RED + WesterosMap.WW_REP + ANSI_RESET;
         }
         grid[state.getPosition().x][state.getPosition().y] = GREEN_UNDERLINED + WesterosMap.JS_REP + ANSI_RESET;
         return grid;

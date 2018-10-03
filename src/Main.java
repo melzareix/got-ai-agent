@@ -1,27 +1,27 @@
-import strategies.BreadthFirst;
-import strategies.DepthFirst;
-import strategies.DepthLimitedSearch;
-import strategies.IterativeDeep;
+import strategies.*;
 import westeros.SaveWesteros;
-import westeros.WesterosState;
-import westeros.operators.WesterosOperator;
+import westeros.heuristics.CostHeuristicFunction;
+import westeros.heuristics.PickupHeuristicFunction;
+import westeros.heuristics.UniformCostHeuristicFunction;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         SaveWesteros problem = new SaveWesteros();
         problem.printMap();
 
-        problem.search(BreadthFirst.class, true);
-//        problem.search(DepthFirst.class, true);
-//        problem.search(IterativeDeep.class, true);
+//        problem.search(BreadthFirst.class, true);
+        PickupHeuristicFunction pickupHeuristic = new PickupHeuristicFunction();
+        CostHeuristicFunction costHeuristic = new CostHeuristicFunction();
+
+        problem.search(BreadthFirst.class, null, false);
+        problem.search(DepthFirst.class, null, false);
+        problem.search(IterativeDeep.class, null, false);
+        problem.search(UniformCost.class, null, false);
+        problem.search(Greedy.class, pickupHeuristic, false);
+        problem.search(Greedy.class, costHeuristic, false);
+        problem.search(AStar.class, costHeuristic, false);
+        problem.search(AStar.class, pickupHeuristic, false);
     }
 }

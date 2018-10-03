@@ -1,11 +1,9 @@
 package generic;
 
 import strategies.SearchQueue;
-import westeros.WesterosState;
+import westeros.heuristics.BaseHeuristicFunction;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 abstract public class SearchProblem {
@@ -34,11 +32,18 @@ abstract public class SearchProblem {
      * @param queue the search strategy to use.
      * @param visualize a flag to print the final solution.
      */
-    public void search(Class queue, boolean visualize) {
+    public void search(Class queue, BaseHeuristicFunction heuristic, boolean visualize) {
         // Use reflection to initialize class queue
+        System.out.println(queue);
         try {
-            Constructor<?> cons = queue.getConstructor(State.class);
-            SearchQueue searchQueue = (SearchQueue) cons.newInstance(this.getInitialState());
+            SearchQueue searchQueue;
+            if (heuristic == null) {
+                Constructor<?> cons = queue.getConstructor(State.class);
+                searchQueue = (SearchQueue) cons.newInstance(this.getInitialState());
+            } else {
+                Constructor<?> cons = queue.getConstructor(State.class, BaseHeuristicFunction.class);
+                searchQueue = (SearchQueue) cons.newInstance(this.getInitialState(), heuristic);
+            }
             int totalNodes = 0;
             while (!searchQueue.isEmpty()) {
                 Node curr = searchQueue.removeFront();
@@ -54,7 +59,7 @@ abstract public class SearchProblem {
             }
             System.out.println("NO SOLUTION FOUND");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

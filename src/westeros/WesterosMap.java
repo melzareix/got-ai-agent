@@ -2,10 +2,7 @@ package westeros;
 
 import utils.Pair;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Singleton Class for Westeros Map.
@@ -22,10 +19,12 @@ public class WesterosMap {
     public int n;
     public int maxGlass;
 
-    //    private static final long RANDOM_SEED = System.currentTimeMillis();
-//    private static final long RANDOM_SEED = 3;
-    private static final long RANDOM_SEED = 7;
-    private static final int GRID_BOUND = 8;
+//        private static final long RANDOM_SEED = System.currentTimeMillis();
+    private static final long RANDOM_SEED = 3;
+//    private static final long RANDOM_SEED = 7;
+//    private static final long RANDOM_SEED = 9;
+//    private static final int GRID_BOUND = 8;
+
 
     private static final double WW_PERCENTAGE = 0.25;
     private static final double DSTONE_PERCENTAGE = 0.1;
@@ -65,8 +64,8 @@ public class WesterosMap {
     private void genGrid() {
 //        this.m = this.randomGenerator.nextInt(GRID_BOUND + 1) + 4;
 //        this.n = this.randomGenerator.nextInt(GRID_BOUND + 1) + 4;
-        this.m = 5;
-        this.n = 5;
+        this.m = 4;
+        this.n = 4;
         final int gridSize = m * n;
 
         this.grid = new char[m][n];
@@ -103,7 +102,6 @@ public class WesterosMap {
         this.grid[m - 1][n - 1] = JS_REP;
     }
 
-
     /**
      * Print the grid in a human readable format.
      */
@@ -114,7 +112,7 @@ public class WesterosMap {
     public static void printGrid(char[][] grid) {
         for (char[] row : grid) {
             for (char e : row) {
-                System.out.printf("%4c ", e);
+                System.out.printf(" %4c ", e);
             }
             System.out.println();
         }

@@ -67,7 +67,7 @@ public class Node {
                 "state=" + state +
                 ", operator=" + operator +
 //                ", parent=" + parent +
-//                ", cost=" + cost +
+                ", cost=" + cost +
                 '}';
     }
 }
