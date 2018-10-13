@@ -6,11 +6,21 @@ import westeros.heuristics.BaseHeuristicFunction;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
+/**
+ * Generic Search Problem Class to be inherited
+ * by all sub-problems.
+ */
 abstract public class SearchProblem {
     public ArrayList<Operator> operators;
 
     public abstract State getInitialState();
 
+    /**
+     * Expands the node n by applying each operator in o to it.
+     * @param n the node to expand
+     * @param o list of operators to apply.
+     * @return list of new nodes after applying each operator.
+     */
     public abstract ArrayList<Node> expand(Node n, ArrayList<Operator> o);
 
     /**
@@ -29,12 +39,14 @@ abstract public class SearchProblem {
     }
 
     /**
+     * General Search algorithm to solve search problems.
      * @param queue the search strategy to use.
      * @param visualize a flag to print the final solution.
      */
     public void search(Class queue, BaseHeuristicFunction heuristic, boolean visualize) {
-        // Use reflection to initialize class queue
-        System.out.println(queue);
+        // Use old fashioned reflection to initialize class queue
+        // passing functions??? this is java we don't do that here.
+        System.out.println(queue + " " + (heuristic == null ? " " : " - " + heuristic));
         try {
             SearchQueue searchQueue;
             if (heuristic == null) {
@@ -63,5 +75,11 @@ abstract public class SearchProblem {
         }
     }
 
+    /**
+     * Print the solution starting from the goal node.
+     * @param node the solution node
+     * @param visualize boolean to print the grid or not
+     * @param totalNodes the total number of visited nodes
+     */
     public abstract void printSolution(Node node, boolean visualize, int totalNodes);
 }

@@ -1,5 +1,8 @@
 package generic;
 
+/**
+ * Generic Node class.
+ */
 public class Node {
     private State state;
     private Node parent;
@@ -66,7 +69,7 @@ public class Node {
         return "Node{" +
                 "state=" + state +
                 ", operator=" + operator +
-//                ", parent=" + parent +
+                ", parent=" + parent +
                 ", cost=" + cost +
                 '}';
     }

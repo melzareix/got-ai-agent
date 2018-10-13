@@ -64,6 +64,9 @@ public class SaveWesteros extends SearchProblem {
 
     }
 
+    /**
+     * Initialize the list of operators.
+     */
     private void addOperators() {
         this.operators = new ArrayList<>();
         operators.add(new MoveUpOperator());

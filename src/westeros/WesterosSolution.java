@@ -8,6 +8,8 @@ import westeros.operators.KillOperator;
 import java.util.ArrayList;
 
 public class WesterosSolution extends Solution {
+
+    // set to false to print the whole sequence at once.
     private static boolean WAIT_FOR_NEXT = true;
     private ArrayList<String[][]> solutionSteps;
     private WesterosMap map;

@@ -6,11 +6,15 @@ import generic.State;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+/**
+ * Base Class for a search queue.
+ */
+
 public abstract class SearchQueue {
-    public TreeMap<State, Integer> previousStates;
+    TreeMap<State, Integer> previousStates;
     State initialState;
 
-    public SearchQueue(State initialState) {
+    SearchQueue(State initialState) {
         this.initialState = initialState;
         resetQueue();
     }

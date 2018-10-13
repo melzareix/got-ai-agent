@@ -11,10 +11,14 @@ import westeros.heuristics.PickupHeuristicFunction;
 
 import java.util.PriorityQueue;
 
+/*
+ * Implementing Uniform-Cost strategy.
+ */
+
 public class UniformCost extends SearchQueue {
     protected PriorityQueue<Node> queue;
-    public NodeComparator comparator;
-    protected BaseEvaluator evaluator;
+    NodeComparator comparator;
+    BaseEvaluator evaluator;
 
     public UniformCost(State initialState) {
         super(initialState);

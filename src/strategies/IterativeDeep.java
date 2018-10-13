@@ -3,8 +3,13 @@ package strategies;
 import generic.Node;
 import generic.State;
 
+/*
+ * Implementing Iterative Deepening strategy.
+ */
+
 public class IterativeDeep extends SearchQueue {
-    DepthLimitedSearch queue;
+    private DepthLimitedSearch queue;
+
     public IterativeDeep(State initialState) {
         super(initialState);
     }
@@ -28,7 +33,8 @@ public class IterativeDeep extends SearchQueue {
     public boolean isEmpty() {
         boolean isDone = queue.isEmpty();
         if (isDone) {
-            System.out.printf("Tried depth %d but failed to find solution, trying depth %d ...\n", queue.depth, queue.depth + 1);
+            System.out.printf("Tried depth %d but failed to find solution, trying depth %d ...\n",
+                    queue.depth, queue.depth + 1);
             queue.depth++;
             queue.resetQueue();
         }

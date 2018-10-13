@@ -7,6 +7,10 @@ import westeros.heuristics.BaseHeuristicFunction;
 
 import java.util.PriorityQueue;
 
+/*
+ * Implementing AStar strategy.
+ */
+
 public class AStar extends UniformCost {
     public AStar(State initialState, BaseHeuristicFunction heuristicFunction) {
         super(initialState);

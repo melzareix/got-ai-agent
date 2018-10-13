@@ -5,11 +5,14 @@ import generic.State;
 
 import java.util.Stack;
 
+/*
+ * Implementing Depth Limited strategy.
+ */
 public class DepthLimitedSearch extends SearchQueue {
     private Stack<Node> queue;
-    public int depth;
+    int depth;
 
-    public DepthLimitedSearch(State initialState, int depth) {
+    DepthLimitedSearch(State initialState, int depth) {
         super(initialState);
         this.depth = depth;
     }
@@ -21,12 +24,13 @@ public class DepthLimitedSearch extends SearchQueue {
 
     @Override
     public Node removeFront() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
         Node n = queue.pop();
 
-        boolean exploredBefore = previousStates.containsKey(n.getState()) && previousStates.get(n.getState()) <= n.getDepth();
+        boolean exploredBefore = previousStates.containsKey(n.getState())
+                && previousStates.get(n.getState()) <= n.getDepth();
         boolean depthCrossed = n.getDepth() > this.depth;
         if (exploredBefore || depthCrossed) return null;
 

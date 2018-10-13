@@ -6,6 +6,10 @@ import utils.Pair;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+/**
+ * State for the SaveWesteros Problem.
+ */
+
 public class WesterosState extends State {
 
     private Pair position;

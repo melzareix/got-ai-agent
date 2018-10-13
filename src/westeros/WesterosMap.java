@@ -19,18 +19,15 @@ public class WesterosMap {
     public int n;
     public int maxGlass;
 
-//        private static final long RANDOM_SEED = System.currentTimeMillis();
-    private static final long RANDOM_SEED = 3;
-//    private static final long RANDOM_SEED = 7;
-//    private static final long RANDOM_SEED = 9;
-//    private static final int GRID_BOUND = 8;
+    private static final long RANDOM_SEED = System.currentTimeMillis();
+    private static final int GRID_BOUND = 4;
 
 
     private static final double WW_PERCENTAGE = 0.25;
     private static final double DSTONE_PERCENTAGE = 0.1;
     private static final double OBSTACLE_PERCENTAGE = 0.15;
 
-    public  static final char WW_REP = 'W';
+    public static final char WW_REP = 'W';
     public static final char D_REP = 'D';
     public static final char O_REP = '#';
     public static final char JS_REP = 'J';
@@ -62,10 +59,8 @@ public class WesterosMap {
      * Generate the grid of the map.
      */
     private void genGrid() {
-//        this.m = this.randomGenerator.nextInt(GRID_BOUND + 1) + 4;
-//        this.n = this.randomGenerator.nextInt(GRID_BOUND + 1) + 4;
-        this.m = 4;
-        this.n = 4;
+        this.m = this.randomGenerator.nextInt(GRID_BOUND) + 4;
+        this.n = this.randomGenerator.nextInt(GRID_BOUND) + 4;
         final int gridSize = m * n;
 
         this.grid = new char[m][n];
@@ -76,9 +71,8 @@ public class WesterosMap {
         int obstacleCount = (int) (OBSTACLE_PERCENTAGE * gridSize);
         int dragonStoneCount = (int) (DSTONE_PERCENTAGE * gridSize);
 
-//        this.maxGlass = this.randomGenerator.nextInt(whiteWalkerCount) + 1;
+        this.maxGlass = this.randomGenerator.nextInt(whiteWalkerCount) + 1;
         this.randomGenerator.nextInt(whiteWalkerCount);
-        this.maxGlass = 3;
 
         final int totalCount = whiteWalkerCount + obstacleCount + dragonStoneCount;
 
@@ -105,11 +99,11 @@ public class WesterosMap {
     /**
      * Print the grid in a human readable format.
      */
-    public void printGrid() {
+    void printGrid() {
         printGrid(this.grid);
     }
 
-    public static void printGrid(char[][] grid) {
+    private static void printGrid(char[][] grid) {
         for (char[] row : grid) {
             for (char e : row) {
                 System.out.printf(" %4c ", e);
@@ -118,7 +112,7 @@ public class WesterosMap {
         }
     }
 
-    public static void printGrid(String[][] grid) {
+    static void printGrid(String[][] grid) {
         for (String[] row : grid) {
             for (String e : row) {
                 System.out.printf("%1$-10s", e);
@@ -130,7 +124,7 @@ public class WesterosMap {
     /**
      * @return the generated grid.
      */
-    public char[][] getGrid() {
+    char[][] getGrid() {
         return grid;
     }
 
@@ -147,6 +141,7 @@ public class WesterosMap {
     public boolean isDragonGlass(Pair position) {
         return grid[position.getX()][position.getY()] == D_REP;
     }
+
     /**
      * @return the positions of the white walkers in the grid.
      */

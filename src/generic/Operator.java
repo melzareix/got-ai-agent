@@ -1,5 +1,8 @@
 package generic;
 
+/**
+ * Generic Operator Class.
+ */
 public abstract class Operator {
     private int cost;
     private String name;

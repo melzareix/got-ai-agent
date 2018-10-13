@@ -1,5 +1,8 @@
 package utils;
 
+/**
+ * Helper class to represent a pair of integers.
+ */
 public class Pair implements Comparable<Pair>{
     public int x;
     public int y;

@@ -1,12 +1,5 @@
 package generic;
 
-import utils.Pair;
-import westeros.WesterosMap;
-import westeros.WesterosState;
-import westeros.operators.KillOperator;
-
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public abstract class Solution {
