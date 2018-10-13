@@ -13,8 +13,20 @@ import java.util.ArrayList;
 abstract public class SearchProblem {
     public ArrayList<Operator> operators;
 
+    /**
+     * Set the initial state of the problem.
+     * @return the initial state.
+     */
     public abstract State getInitialState();
 
+    /**
+     * State space simulator given a state and an operator return
+     * the next state.
+     * @param state initial state
+     * @param o operator to apply
+     * @return the next state
+     */
+    public abstract State getNextState(State state, Operator o);
     /**
      * Expands the node n by applying each operator in o to it.
      * @param n the node to expand

@@ -26,6 +26,11 @@ public class SaveWesteros extends SearchProblem {
     }
 
     @Override
+    public State getNextState(State state, Operator o) {
+        return o.apply(new Node(state, null, null)).getState();
+    }
+
+    @Override
     public ArrayList<Node> expand(Node n, ArrayList<Operator> operators) {
         ArrayList<Node> nodes = new ArrayList<>();
         for (Operator o : operators) {
