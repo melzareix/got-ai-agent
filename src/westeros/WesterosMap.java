@@ -103,18 +103,9 @@ public class WesterosMap {
         printGrid(this.grid);
     }
 
-    private static void printGrid(char[][] grid) {
+    static void printGrid(char[][] grid) {
         for (char[] row : grid) {
             for (char e : row) {
-                System.out.printf(" %4c ", e);
-            }
-            System.out.println();
-        }
-    }
-
-    static void printGrid(String[][] grid) {
-        for (String[] row : grid) {
-            for (String e : row) {
                 System.out.printf("%1$-10s", e);
             }
             System.out.println();

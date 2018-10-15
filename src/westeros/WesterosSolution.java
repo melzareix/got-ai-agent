@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class WesterosSolution extends Solution {
 
     // set to false to print the whole sequence at once.
-    private static boolean WAIT_FOR_NEXT = true;
-    private ArrayList<String[][]> solutionSteps;
+    private static boolean WAIT_FOR_NEXT = false;
+    private ArrayList<char[][]> solutionSteps;
     private WesterosMap map;
 
     WesterosSolution(boolean visualize, int totalNodes) {
@@ -44,7 +44,7 @@ public class WesterosSolution extends Solution {
                 System.out.println("======================");
 
                 if (WAIT_FOR_NEXT) {
-                    System.out.println("Press Enter key to continue...");
+                    System.out.println("Press Enter key to show next move...");
                     try {
                         System.in.read();
                     } catch (Exception ignored) {
@@ -54,27 +54,27 @@ public class WesterosSolution extends Solution {
         }
     }
 
-    private String[][] createSolutionStepFromNode(Node node) {
-        String[][] grid = new String[this.map.m][this.map.n];
+    private char[][] createSolutionStepFromNode(Node node) {
+        char[][] grid = new char[this.map.m][this.map.n];
         // fill array without JS and WW
         for (int i = 0; i < this.map.m; i++) {
             for (int j = 0; j < this.map.n; j++) {
                 char cell = this.map.getGrid()[i][j];
                 if (cell == WesterosMap.JS_REP || cell == WesterosMap.WW_REP || cell == WesterosMap.DEF_REP) {
-                    grid[i][j] = ANSI_WHITE + WesterosMap.DEF_REP + ANSI_RESET;
+                    grid[i][j] = WesterosMap.DEF_REP;
                 } else if (cell == WesterosMap.D_REP){
-                    grid[i][j] = YELLOW_BOLD + cell + ANSI_RESET;
+                    grid[i][j] = cell;
                 } else {
-                    grid[i][j] = ANSI_WHITE + cell + ANSI_RESET;
+                    grid[i][j] = cell;
                 }
             }
         }
 
         WesterosState state = (WesterosState) node.getState();
         for (Pair p : state.getWhiteWalkersPositions()) {
-            grid[p.x][p.y] = ANSI_RED + WesterosMap.WW_REP + ANSI_RESET;
+            grid[p.x][p.y] = WesterosMap.WW_REP;
         }
-        grid[state.getPosition().x][state.getPosition().y] = GREEN_UNDERLINED + WesterosMap.JS_REP + ANSI_RESET;
+        grid[state.getPosition().x][state.getPosition().y] = WesterosMap.JS_REP;
         return grid;
     }
 }

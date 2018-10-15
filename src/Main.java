@@ -18,18 +18,18 @@ public class Main {
         DistanceHeuristicFunction distanceHeuristic = new DistanceHeuristicFunction();
 
 //        Compare all algorithms
-        problem.search(BreadthFirst.class, null, false);
-        problem.search(DepthFirst.class, null, false);
-        problem.search(IterativeDeep.class, null, false);
-
-        problem.search(UniformCost.class, null, false);
-
-        problem.search(Greedy.class, costHeuristic, false);
-        problem.search(Greedy.class, pickupHeuristic, false);
-        problem.search(Greedy.class, distanceHeuristic, false);
-
-        problem.search(AStar.class, costHeuristic, false);
-        problem.search(AStar.class, pickupHeuristic, false);
-        problem.search(AStar.class, distanceHeuristic, false);
+        problem.search(BreadthFirst.class, null, true);
+//        problem.search(DepthFirst.class, null, false);
+//        problem.search(IterativeDeep.class, null, false);
+//
+//        problem.search(UniformCost.class, null, false);
+//
+//        problem.search(Greedy.class, costHeuristic, false);
+//        problem.search(Greedy.class, pickupHeuristic, false);
+//        problem.search(Greedy.class, distanceHeuristic, false);
+//
+//        problem.search(AStar.class, costHeuristic, false);
+//        problem.search(AStar.class, pickupHeuristic, false);
+//        problem.search(AStar.class, distanceHeuristic, false);
     }
 }
