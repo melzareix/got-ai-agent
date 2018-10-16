@@ -32,13 +32,12 @@ public class WesterosSolution extends Solution {
         System.out.println("======================");
         System.out.println("Total number of expanded nodes: " + totalNodes);
         System.out.println("Number of DG used to reach solution: " + cost);
-        System.out.println("Number of expanded nodes for this solution: " + expandedNodes);
         System.out.println("Depth of the solution: " + depth);
         System.out.println("======================");
 
         if (visualize) {
             for (int i = solutionSteps.size() - 1; i >= 0; i--) {
-                System.out.println(solutionOperators.get(i));
+                System.out.println(solutionOperators.get(i) != null ? solutionOperators.get(i) : "Initial State");
                 System.out.println("======================");
                 WesterosMap.printGrid(solutionSteps.get(i));
                 System.out.println("======================");
