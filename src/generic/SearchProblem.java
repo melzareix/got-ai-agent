@@ -81,7 +81,8 @@ abstract public class SearchProblem {
                 ArrayList<Node> nodes = expand(curr, operators);
                 searchQueue.enqueue(nodes);
             }
-            System.out.println("NO SOLUTION FOUND");
+            System.out.println("Winter has come and John snow couldn't stop the walkers!");
+            System.out.println("======================");
         } catch (Exception e) {
             e.printStackTrace();
         }
