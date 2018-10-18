@@ -27,6 +27,7 @@ abstract public class SearchProblem {
      * @return the next state
      */
     public abstract State getNextState(State state, Operator o);
+
     /**
      * Expands the node n by applying each operator in o to it.
      * @param n the node to expand
@@ -95,4 +96,12 @@ abstract public class SearchProblem {
      * @param totalNodes the total number of visited nodes
      */
     public abstract void printSolution(Node node, boolean visualize, int totalNodes);
+
+    /**
+     * Get the cost of the path by applying operator o on node n.
+     * @param node Node to be get path cost for.
+     * @param o the operator to be applied
+     * @return the cost of the path
+     */
+    public abstract int getPathCost(Node node, Operator o);
 }

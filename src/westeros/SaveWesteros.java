@@ -36,6 +36,7 @@ public class SaveWesteros extends SearchProblem {
         for (Operator o : operators) {
             Node newNode = o.apply(n);
             if (newNode != null) {
+                newNode.setCost(getPathCost(newNode, o));
                 nodes.add(newNode);
             }
         }
@@ -67,6 +68,12 @@ public class SaveWesteros extends SearchProblem {
         solution.addNode(node);
         solution.printSolution();
 
+    }
+
+    @Override
+    public int getPathCost(Node node, Operator o) {
+        if (node.getParent() == null) return 0;
+        return node.getParent().getCost() + o.getCost();
     }
 
     /**
